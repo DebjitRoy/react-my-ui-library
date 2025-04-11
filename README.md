@@ -16,8 +16,8 @@ Currently, two official plugins are available:
 
   - https://tailwindcss.com/docs/installation/using-vite
   - follow steps from link to add tailwind to vite proj
-  - conditional class merging - `npm add clx`
-    - `className={clx("base-styles", isPrimary && "bg-blue-500")}`
+  - conditional class merging - `npm add clsx`
+    - `className={clsx("base-styles", isPrimary && "bg-blue-500")}`
   - Prevents conflicting Tailwind classes from being applied -`npm add tailwind-merge`
     - twMerge("bg-red-500 bg-blue-500") // => "bg-blue-500"
   - Declarative class variants for components -`npm add class-variance-authority`
