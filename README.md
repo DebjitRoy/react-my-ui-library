@@ -8,14 +8,45 @@ Currently, two official plugins are available:
 - [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
 ## My Notes
+
 - `npm create vite@latest`
 - choose project name and React TS+SWC
 
 - Tailwind setup steps:
-  - https://tailwindcss.com/docs/installation/using-vite
 
+  - https://tailwindcss.com/docs/installation/using-vite
+  - follow steps from link to add tailwind to vite proj
+  - conditional class merging - `npm add clx`
+    - `className={clx("base-styles", isPrimary && "bg-blue-500")}`
+  - Prevents conflicting Tailwind classes from being applied -`npm add tailwind-merge`
+    - twMerge("bg-red-500 bg-blue-500") // => "bg-blue-500"
+  - Declarative class variants for components -`npm add class-variance-authority`
+
+    - Define and manage variants (e.g., size, intent, state) in one place for a component.
+
+    ```
+
+      const button = cva("font-medium rounded", {
+        variants: {
+          intent: {
+            primary: "bg-blue-500 text-white",
+            secondary: "bg-gray-200 text-black",
+          },
+          size: {
+            sm: "text-sm px-2 py-1",
+            lg: "text-lg px-4 py-2",
+          },
+        },
+        defaultVariants: {
+          intent: "primary",
+          size: "sm",
+        },
+      });
+
+    ```
 
 - Storybook
+
   - `npx storybook init`
   - https://storybook.js.org/docs/get-started/install
 
@@ -43,15 +74,15 @@ export default tseslint.config({
       tsconfigRootDir: import.meta.dirname,
     },
   },
-})
+});
 ```
 
 You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
 
 ```js
 // eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+import reactX from 'eslint-plugin-react-x';
+import reactDom from 'eslint-plugin-react-dom';
 
 export default tseslint.config({
   plugins: {
@@ -65,5 +96,5 @@ export default tseslint.config({
     ...reactX.configs['recommended-typescript'].rules,
     ...reactDom.configs.recommended.rules,
   },
-})
+});
 ```
