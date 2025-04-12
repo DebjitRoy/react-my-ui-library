@@ -60,7 +60,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     return (
       <button
         ref={ref}
-        className={cn(buttonStyles({ variant, size, colorscheme, className }))}
+        className={cn(buttonStyles({ variant, size, colorscheme }), className)}
         {...props}
       />
     );
